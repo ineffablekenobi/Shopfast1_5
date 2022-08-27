@@ -5,13 +5,11 @@ import com.ineffable.shopfast1_5.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -20,6 +18,15 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody ServiceUser serviceUser){
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(serviceUser));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> SignIn(@RequestBody ServiceUser serviceUser){
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(userService.login(serviceUser));
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
     }
 
 

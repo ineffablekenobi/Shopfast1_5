@@ -5,6 +5,8 @@ import com.ineffable.shopfast1_5.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     @Autowired
@@ -23,6 +25,19 @@ public class UserService {
             return serviceUser;
         }
         return userRepo.save(serviceUser);
+    }
+
+    public ServiceUser login(ServiceUser serviceUser) throws IllegalAccessException{
+        Optional<ServiceUser> user = userRepo.findByUsername(serviceUser.getUsername());
+        if(user.isEmpty()){
+            throw new IllegalAccessException();
+        }else{
+            if(!user.get().getPassword().equals(serviceUser.getPassword())){
+                throw new IllegalAccessException();
+            }else{
+                return user.get();
+            }
+        }
     }
 
 }
