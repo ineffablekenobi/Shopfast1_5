@@ -57,4 +57,8 @@ public class OrderService {
         return ordersList;
     }
 
+    public List<Orders> getByUser(String username){
+        return userService.getByUsername(username).getOrdersList();
+    }
+
 }
