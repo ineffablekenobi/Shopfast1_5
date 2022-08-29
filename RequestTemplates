@@ -1,0 +1,39 @@
+[POST] http://localhost:8080/user/create
+
+{
+  "username": "ineffable",
+  "password": "1234",
+  "firstName": "asd ",
+  "lastName": "asd sa",
+  "email": "inf@gg.com",
+  "phoneNumber": "1312312332",
+  "ordersList": []
+}
+
+[POST] http://localhost:8080/product/create
+{
+  "title": "xD Shirt",
+  "price": 2400,
+  "image01": "asdsad",
+  "image02": "asdsd",
+  "categorySlug": "asd",
+  "slug": "sdsd s dsd",
+  "description": "asdasd asd asdsadasd",
+  "variantList": [
+    {
+      "vid": {
+        "variantName": "color",
+        "variantValue": "blue"
+      }
+    }
+  ]
+}
+
+[POST] http://localhost:8080/order/create
+{
+  "username": "ineffable",
+  "subOrders": {
+    "18" : 10,
+    "3" : 20
+  }
+}
